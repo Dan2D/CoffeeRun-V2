@@ -1,0 +1,32 @@
+div div.sliderVal {
+    background:grey;
+    border: 1px solid black;
+    display: inline-block;
+    position:relative;
+    visibility: hidden;
+    padding: 0 10px;
+    margin: 0 35px 0 5px;
+}
+
+.invalid:focus:required {
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.335)
+
+}
+
+.center {
+    margin:auto;
+    display:inline;
+}
+
+.x {
+    position: absolute;
+    top: 0px;
+    right: 3px;
+}
+
+.close:focus {
+    border: none;
+    outline: none;
+
+}
