@@ -18,6 +18,14 @@ var Validation = {
        else{return false;}
        
     }
+    // ,
+    // validateEmailUse: function(order){
+    //     return myTruck.db.get(order.emailAddress);
+    //     if (x.responseText !== "null"){
+    //         return false;
+    //     }
+    //     else {return true;}
+    // }
 };
 
 App.Validation = Validation;

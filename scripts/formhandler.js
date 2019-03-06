@@ -58,6 +58,7 @@
         FormHandler.prototype.addInputHandler = function (fnEmail, fnCoffee) {
 
             this.$formElement.on('input', '[name="emailAddress"]', function (event) {
+                $("#emailInput")[0].setCustomValidity("");
                 let email = this.value;
 
                 if (!fnEmail(email)) {
@@ -88,10 +89,10 @@
         };
 
 
-        FormHandler.prototype.addSubmitHandler = function (fn) {
+        FormHandler.prototype.addSubmitHandler = function (fn, fn2) {
             this.$formElement.on('submit', function (event) {
                 event.preventDefault();
-
+                
                 //SerializeArray is a jquery method that takes objects from the form and turns them into an array of objects
                 var data = $(this).serializeArray();
                 data.forEach(function (item) {
@@ -100,9 +101,29 @@
                 });
 
                 console.log(data);
-                fn(data);
-                $('#form').trigger('reset');
-                this[0].focus();
+                // fn2(data)
+                // .then(function(x){
+                //     if (x.serverResponse !== "null"){
+                //         return;
+                //     }
+                // },
+                // function(){
+                //     alert('email already has order...');
+                // });
+                // if (!fn2(data)){
+                //     message = 'This email already has an order!';
+                //     let email = $("#emailInput")[0];
+                //     validCheck(email, message);
+                //     // email.reportValidity();
+                //     return;
+                // }
+                fn(data)
+                //When you register a callback with .then, it has a new scope, so you have to bind this to keep it
+                .then(function() {
+                    $('[value="'+data.emailAddress+'"]').parent().css('opacity', 1);
+                    $('#form').trigger('reset');
+                    this[0].focus();
+                }.bind(this));
 
             });
         };
